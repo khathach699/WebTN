@@ -1,31 +1,32 @@
-import User from "../schemas/User";
-import dotenv from "dotenv";
-dotenv.config();
+import { Request, Response } from "express";
+import { registerUser, loginUser } from "../services/userService";
 
-const register = async (req: any, res: any) => {
-  const body = req.body;
-  const { email, password, fullname } = body;
-  console.log(body);
-
+export const register = async (req: Request, res: Response) => {
   try {
-    const user = await User.findOne({ email });
-    if (user) {
-      return res.status(400).json({
-        message: "Email đã tồn tại",
+    const { email, password, fullname } = req.body;
+    const userData = await registerUser(email, password, fullname);
+    res.status(201).json({ message: "Đăng ký thành công", data: userData });
+  } catch (error) {
+    res
+      .status(400)
+      .json({
+        message:
+          error instanceof Error ? error.message : "Lỗi server khi đăng ký",
       });
-    }
-    const newUser = new User(body);
-    await newUser.save();
-    res.status(200).json({
-      message: "Đăng ký thành công",
-      data: newUser,
-    });
-  } catch (error: any) {
-    console.error(error);
-    res.status(500).json({
-      message: error.message || "Lỗi server khi đăng ký",
-    });
   }
 };
 
-export { register };
+export const login = async (req: Request, res: Response) => {
+  try {
+    const { email, password } = req.body;
+    const userData = await loginUser(email, password);
+    res.status(200).json({ message: "Đăng nhập thành công", data: userData });
+  } catch (error) {
+    res
+      .status(400)
+      .json({
+        message:
+          error instanceof Error ? error.message : "Lỗi server khi đăng nhập",
+      });
+  }
+};

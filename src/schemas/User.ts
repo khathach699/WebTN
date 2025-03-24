@@ -11,6 +11,10 @@ const userSchema = new Schema(
     email: { type: String, required: true, unique: true },
     point: { type: Number, default: 0 },
     isdisable: { type: Boolean, default: false },
+    rule: {
+      type: Number,
+      default: 1,
+    },
     // role: { type: Schema.Types.ObjectId, ref: "Role", required: true },
     isdeleted: { type: Boolean, default: false },
   },
