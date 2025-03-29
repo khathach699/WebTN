@@ -1,21 +1,70 @@
-ADMIN Quản lý tình nguyện viên
-  http://localhost:3001/users/
-  Get: "/" lấy danh sách user đã phân trang
-  Post: "/detail"  lấy chi tiết user
-  Put:"/"cập nhật user
-  Delete:"/:id" xóa user
+# API Quản lý Hệ Thống
 
-ADMIN Quản lý tổ chức
-  http://localhost:3001/organizations/
-  Post: "/request" user gửi yêu cầu duyệt
-  Put: "/approve/:id" admin chấp nhận yêu cầu
-  Put: "/reject/:id" admin không chấp nhận yêu cầu
-  Get: "/" Lấy danh sách tổ chức
-  Get: "/:id" Lấy thông tin chi tiết tổ chức
-  Get: "/trash" Lấy danh sách các yêu cầu không được chấp nhận (tạm chưa có theo từng user)
-  Delete: "/:id" xóa 1 yêu cầu tổ chức bị hủy 
+## Quản lý Tình Nguyện Viên
+### Base URL
+`http://localhost:3001/users/`
 
-ADMIN Quản lý role 
-  http://localhost:3001/roles/
-  Get: "/" Lấy các role
-  Post:"/" Tạo role
+### Lấy danh sách user đã phân trang
+- **Method:** GET
+- **URL:** `/`
+
+### Lấy chi tiết user
+- **Method:** POST
+- **URL:** `/detail`
+
+### Cập nhật user
+- **Method:** PUT
+- **URL:** `/`
+
+### Xóa user
+- **Method:** DELETE
+- **URL:** `/:id`
+
+---
+
+## Quản lý Tổ Chức
+### Base URL
+`http://localhost:3001/organizations/`
+
+### User gửi yêu cầu duyệt
+- **Method:** POST
+- **URL:** `/request`
+
+### Admin chấp nhận yêu cầu
+- **Method:** PUT
+- **URL:** `/approve/:id`
+
+### Admin không chấp nhận yêu cầu
+- **Method:** PUT
+- **URL:** `/reject/:id`
+
+### Lấy danh sách tổ chức
+- **Method:** GET
+- **URL:** `/`
+
+### Lấy thông tin chi tiết tổ chức
+- **Method:** GET
+- **URL:** `/:id`
+
+### Lấy danh sách các yêu cầu không được chấp nhận
+- **Method:** GET
+- **URL:** `/trash`
+
+### Xóa 1 yêu cầu tổ chức bị hủy
+- **Method:** DELETE
+- **URL:** `/:id`
+
+---
+
+## Quản lý Role
+### Base URL
+`http://localhost:3001/roles/`
+
+### Lấy danh sách role
+- **Method:** GET
+- **URL:** `/`
+
+### Tạo role mới
+- **Method:** POST
+- **URL:** `/`
+
